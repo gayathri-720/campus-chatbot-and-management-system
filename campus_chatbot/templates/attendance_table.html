@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Attendance Management</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body class="dashboard-bg">
+
+    <!-- ===== ATTENDANCE PAGE CONTAINER ===== -->
+    <div class="attendance-container">
+
+        <!-- ===== WHITE CARD ===== -->
+        <div class="attendance-card">
+
+            <!-- ===== HEADING INSIDE CARD ===== -->
+            <div class="attendance-title">
+                Attendance 
+            </div>
+
+            <p style="text-align:center; margin-bottom:15px; font-weight:bold;">
+                Course: {{ course }} |
+                Year: {{ year }} |
+                Branch: {{ branch }} |
+                Section: {{ section }}
+            </p>
+
+            <!-- ===== ATTENDANCE TABLE ===== --><form method="POST" action="/save-attendance">
+
+    <div style="text-align:center; margin-bottom:15px;">
+        <label><b>Date:</b></label>
+        <input type="date" name="date" required>
+
+        <label style="margin-left:20px;"><b>Time:</b></label>
+        <input type="time" name="time" required>
+    </div>
+   <!-- ===== QUICK MARK OPTION ===== -->
+<div style="text-align:center; margin-bottom:20px;">
+
+    <label><b>Select Type:</b></label>
+
+    <select id="markType">
+        <option value="PRESENT">Present</option>
+        <option value="ABSENT">Absent</option>
+    </select>
+
+    <input type="text" id="rollInput"
+           placeholder="Enter last 3 digits (e.g. 501,504,510)"
+           style="margin-left:10px; padding:5px; width:250px;">
+
+    <button type="button" onclick="autoMark()" style="margin-left:10px;">
+        Apply
+    </button>
+
+</div>
+
+
+    <table class="attendance-table">
+        <tr>
+            <th>Roll No</th>
+            <th>Year</th>
+            <th>Branch</th>
+            <th>Current Status</th>
+            <th>Update</th>
+        </tr>
+
+        {% for student in students %}
+        <tr>
+            <td>{{ student.roll }}</td>
+            <td>{{ year }}</td>
+            <td>{{ branch }}</td>
+            <td>{{ student.status }}</td>
+            <td style="text-align:center;">
+                <input type="radio" name="status_{{ student.roll }}" value="PRESENT" required> P
+                <input type="radio" name="status_{{ student.roll }}" value="ABSENT"> A
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+     {% if present_count is defined %}
+<div style="text-align:center; margin-top:20px; font-weight:bold; font-size:18px;">
+
+    <span style="color:green;">
+        Total Present: {{ present_count }}
+    </span>
+
+    &nbsp;&nbsp;&nbsp;
+
+    <span style="color:red;">
+        Total Absent: {{ absent_count }}
+    </span>
+{% with messages = get_flashed_messages() %}
+  {% if messages %}
+    <div style="color: green; font-weight: bold;">
+      {% for message in messages %}
+        <p>{{ message }}</p>
+      {% endfor %}
+    </div>
+  {% endif %}
+{% endwith %}
+
+
+</div>
+{% endif %}
+
+
+    <div style="text-align:center; margin-top:20px;">
+        <button type="submit">Save Attendance</button>
+    </div>
+
+</form>
+
+<a href="/attendance" class="back-link">⬅ Back to Attendance</a>
+                   
+<script>
+function autoMark() {
+
+    let type = document.getElementById("markType").value;
+    let input = document.getElementById("rollInput").value;
+
+    if (!input) {
+        alert("Please enter roll numbers!");
+        return;
+    }
+
+    // Convert input into array
+    let numbers = input.split(",").map(n => n.trim());
+
+    // Get all radio buttons
+    let radios = document.querySelectorAll("input[type='radio']");
+
+    radios.forEach(radio => {
+
+        // Get full roll number
+        let fullRoll = radio.name.replace("status_", "");
+
+        // Get last 3 digits
+        let last3 = fullRoll.slice(-3);
+
+        if (type === "PRESENT") {
+
+            if (radio.value === "PRESENT") {
+                radio.checked = numbers.includes(last3);
+            }
+
+            if (radio.value === "ABSENT") {
+                radio.checked = !numbers.includes(last3);
+            }
+
+        } else if (type === "ABSENT") {
+
+            if (radio.value === "ABSENT") {
+                radio.checked = numbers.includes(last3);
+            }
+
+            if (radio.value === "PRESENT") {
+                radio.checked = !numbers.includes(last3);
+            }
+
+        }
+
+    });
+}
+
+
+</script>
+
+
+        </div>
+    </div>
+
+</body>
+</html>

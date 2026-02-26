@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Enter Internal Marks</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body class="dashboard-bg">
+
+<!-- HEADER -->
+<div class="header">
+    <h1>Internal Marks Entry</h1>
+    <p class="sub-header">
+        {{ course }} | {{ year }} | {{ branch }} | Section {{ section }} | {{ mid }}
+    </p>
+</div>
+
+<!-- FORM CARD -->
+<div class="center-container">
+<div class="white-card large-card">
+
+<form method="post" action="/save_internal_marks">
+
+    <!-- HIDDEN VALUES -->
+    <input type="hidden" name="course" value="{{ course }}">
+    <input type="hidden" name="year" value="{{ year }}">
+    <input type="hidden" name="branch" value="{{ branch }}">
+    <input type="hidden" name="section" value="{{ section }}">
+    <input type="hidden" name="mid" value="{{ mid }}">
+
+    <table class="marks-table">
+        <thead>
+            <tr>
+                <th>Student ID</th>
+                <th>BIT</th>
+                <th>Assignment</th>
+                <th>Theory</th>
+                <th>Total</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+<tbody id="marksBody">
+{% if students %}
+    {% for student in students %}
+    <tr>
+        <td><input type="text" name="roll[]" value="{{ student.roll }}" readonly></td>
+        <td><input type="number" name="bit[]" oninput="calcTotal(this)" required></td>
+        <td><input type="number" name="assignment[]" oninput="calcTotal(this)" required></td>
+        <td><input type="number" name="theory[]" oninput="calcTotal(this)" required></td>
+        <td><input type="number" name="total[]" readonly></td>
+        <td><button type="button" onclick="deleteRow(this)">❌</button></td>
+    </tr>
+    {% endfor %}
+{% else %}
+    <tr>
+        <td colspan="6">No students found for this class/section.</td>
+    </tr>
+{% endif %}
+</tbody>
+            </table>
+
+    <div class="btn-row">
+        <button type="button" onclick="addRow()">➕ Add Row</button>
+        <button type="submit" class="primary-btn">💾 Save Marks</button>
+    </div>
+   <a class="outline-btn" href="/select_internal_marks">⬅ Back</a>
+</form>
+
+</div>
+</div>
+
+<!-- SCRIPT -->
+<script>
+function calcTotal(ele) {
+    let row = ele.closest("tr");
+
+    // Auto-uppercase roll
+    let rollInput = row.querySelector('input[name="roll[]"]');
+    rollInput.value = rollInput.value.toUpperCase();
+
+    // Calculate total
+    let bit = Number(row.children[1].children[0].value) || 0;
+    let ass = Number(row.children[2].children[0].value) || 0;
+    let theory = Number(row.children[3].children[0].value) || 0;
+    row.children[4].children[0].value = bit + ass + theory;
+}
+
+function addRow() {
+    let tbody = document.getElementById("marksBody");
+    let newRow = tbody.rows[0].cloneNode(true);
+
+    // Clear all inputs
+    newRow.querySelectorAll("input").forEach(input => input.value = "");
+    tbody.appendChild(newRow);
+}
+
+function deleteRow(btn) {
+    let tbody = document.getElementById("marksBody");
+    if (tbody.rows.length > 1) { // Keep at least one row
+        let row = btn.closest("tr");
+        row.remove();
+    } else {
+        alert("At least one row is required.");
+    }
+}
+</script>
+
+</body>
+</html>

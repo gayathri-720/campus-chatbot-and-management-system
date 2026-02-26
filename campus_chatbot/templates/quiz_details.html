@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Create Quiz</title>
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+<div class="center-card">
+
+    <h2>Create Quiz</h2>
+
+    <form method="POST">
+
+        <label>Course</label>
+        <select name="course" required>
+            <option value="">select course</option>
+            <option value="B.Tech">B.Tech</option>
+            <option value="M.Tech">M.Tech</option>
+            <option value="MBA">MBA</option>
+            <option value="Diploma">Diploma</option>
+        </select><br><br>
+
+        <label>Year</label>
+        <select name="year" required>
+            <option value="">select year</option>
+            <option value="1st">1st</option>
+            <option value="2nd">2nd</option>
+            <option value="3rd">3rd</option>
+            <option value="4th">4th</option>
+        </select><br><br>
+
+        <label>Branch</label>
+        <select name="branch" required>
+            <option value="">select branch</option>
+            <option value="CSE">CSE</option>
+            <option value="ECE">ECE</option>
+            <option value="AI&DS">AI&DS</option>
+            <option value="AI&ML">AI&ML</option>
+        </select><br><br>
+
+        <label>Section</label>
+        <select name="section" required>
+            <option value="">seelct sections</option>
+            <option value="A">A</option>
+            <option value="B">B</option>
+        </select>
+
+        <br><br>
+
+        <button type="submit">Next → Upload Quiz</button>
+        
+    </form>
+   <a class="outline-btn" href="/faculty_dashboard">⬅ Back To Dashboard</a>
+</div>
+
+</body>
+</html>

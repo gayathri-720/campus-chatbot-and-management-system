@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Class Time Table</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body class="dashboard-bg">
+
+<div class="center-container">
+    <div class="white-card">
+
+        <!-- Title inside card -->
+        <h2>Class Time Table</h2>
+
+        <form method="POST">
+
+            <div class="form-row">
+                <label>Course:</label>
+                <select name="course" required>
+                    <option value="">Select</option>
+                    <option>B.Tech</option>
+                    <option>M.Tech</option>
+                   <option>Diploma</option>
+                </select>
+            </div>
+
+            <div class="form-row">
+                <label>Year:</label>
+                <select name="year" required>
+                    <option value="">Select</option>
+                    <option>1st Year</option>
+                    <option>2nd Year</option>
+                    <option>3rd Year</option>
+                    <option>4th Year</option>
+                </select>
+            </div>
+
+            <div class="form-row">
+                <label>Branch:</label>
+                <select name="branch" required>
+                    <option value="">Select</option>
+                    <option>CSE</option>
+                    <option>ECE</option>
+                    <option>AI&ML</option>
+                    <option>AI&DS</option>
+                </select>
+            </div>
+
+            <!-- Next Button -->
+            <button type="submit">Next</button>
+
+        </form>
+
+        <!-- Back Button Below -->
+        <a href="/timetable" class="back-link">⬅ Back</a>
+
+    </div>
+</div>
+
+</body>
+</html>

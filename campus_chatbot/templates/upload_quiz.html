@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Upload Quiz</title>
+
+    <!-- LINK EXTERNAL CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+<div class="quiz-container">
+    <div class="quiz-card">
+
+        <h2 class="quiz-title">Upload Quiz Questions</h2>
+
+        <div class="quiz-info">
+            <b>Course:</b> {{ course }} |
+            <b>Year:</b> {{ year }} |
+            <b>Branch:</b> {{ branch }} |
+            <b>Section:</b> {{ section }}
+        </div>
+
+        <form method="POST">
+
+            <!-- QUESTIONS CONTAINER -->
+            <div id="questions">
+
+                <!-- FIRST QUESTION -->
+                <div class="question-box">
+                    <p>Question 1</p>
+
+                    <textarea name="question[]" placeholder="Enter Question" required></textarea>
+
+                    <input name="option1[]" placeholder="Option 1" required>
+                    <input name="option2[]" placeholder="Option 2" required>
+                    <input name="option3[]" placeholder="Option 3" required>
+                    <input name="option4[]" placeholder="Option 4" required>
+
+                    <label>Correct Option:</label>
+                    <select name="correct[]">
+                        <option value="1">Option 1</option>
+                        <option value="2">Option 2</option>
+                        <option value="3">Option 3</option>
+                        <option value="4">Option 4</option>
+                    </select>
+
+                    <hr>
+                </div>
+
+            </div>
+
+            <!-- BUTTONS -->
+            <button type="button" onclick="addQuestion()">+ Add More Question</button>
+            <button type="submit">Upload Quiz</button>
+
+        </form>
+       <a class="outline-btn" href="/faculty_dashboard">⬅ Back To Dashboard</a>
+    </div>
+</div>
+
+<script>
+let count = 1;
+
+function addQuestion() {
+    count++;
+
+    let html = `
+    <div class="question-box">
+        <p>Question ${count}</p>
+
+        <textarea name="question[]" placeholder="Enter Question" required></textarea>
+
+        <input name="option1[]" placeholder="Option 1" required>
+        <input name="option2[]" placeholder="Option 2" required>
+        <input name="option3[]" placeholder="Option 3" required>
+        <input name="option4[]" placeholder="Option 4" required>
+
+        <label>Correct Option:</label>
+        <select name="correct[]">
+            <option value="1">Option 1</option>
+            <option value="2">Option 2</option>
+            <option value="3">Option 3</option>
+            <option value="4">Option 4</option>
+        </select>
+
+        <hr>
+    </div>
+    `;
+
+    document.getElementById("questions")
+        .insertAdjacentHTML("beforeend", html);
+}
+</script>
+
+</body>
+</html>

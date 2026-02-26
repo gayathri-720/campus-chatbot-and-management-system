@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Add Student for Fees</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body class="dashboard-bg">
+
+<div class="center-container">
+    <div class="white-card">
+
+        <h2>Add Student (Fees)</h2>
+
+        <form method="POST">
+
+            <div class="form-row">
+            <label>Starting Roll No</label>
+           <input type="text" name="start_roll" required>
+           </div>
+
+          <div class="form-row">
+         <label>Ending Roll No</label>
+        <input type="text" name="end_roll" required>
+       </div>
+
+
+            <div class="form-row">
+                <label>Course</label>
+                <select name="course">
+                    <option value="">Select course</option>
+                    <option>B.Tech</option>
+                    <option>M.Tech</option>
+                </select>
+            </div>
+
+            <div class="form-row">
+                <label>Year</label>
+                   <select name="year" required>
+                  <option value="">Select year</option>
+                 <option value="1">1</option>
+                <option value="2">2</option>
+               <option value="3">3</option>
+              <option value="4">4</option>
+              </select>
+            </div>
+
+            <div class="form-row">
+                <label>Branch</label>
+                <select name="branch">
+                    <option value="">Select branch</option>
+                    <option>CSE</option>
+                    <option>AI&DS</option>
+                    <option>AI&ML</option>
+                </select>
+            </div>
+
+            <div class="form-row">
+          <label>Section</label>
+          <input type="text" name="section" placeholder="A / B /C" required>
+          </div>
+
+            <button type="submit">Add Student</button>
+        </form>
+
+        <a href="/fees" class="back-link">⬅ Back</a>
+
+    </div>
+</div>
+
+</body>
+</html>

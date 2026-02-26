@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>My Fees Status</title>
+</head>
+<body>
+
+<h2>Your Fees Status</h2>
+
+{% if fees == "PAID" %}
+    <h3 style="color:green;">PAID ✅</h3>
+{% else %}
+    <h3 style="color:red;">NOT PAID ❌</h3>
+{% endif %}
+
+<a href="/student_dashboard">Back</a>
+
+</body>
+</html>

@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Monthly Attendance</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body class="dashboard-bg">
+
+    <div class="header">
+        <div class="header-text">
+            <h1>Attendance Management</h1>
+            <p>Monthly Attendance</p>
+        </div>
+    </div>
+
+    <div class="center-container">
+        <div class="white-card">
+            <h2>Select Month</h2>
+
+            <form method="POST">
+
+                <!-- Month -->
+                <div class="form-row">
+                    <label>Month</label>
+                    <input type="month" name="month" required>
+                </div>
+
+                <!-- Course -->
+                <div class="form-row">
+                    <label>Course</label>
+                    <select name="course" required>
+                        <option value="">Select Course</option>
+                        <option>B.Tech</option>
+                        <option>M.Tech</option>
+                        <option>MBA</option>
+                        <option>Diploma</option>
+                    </select>
+                </div>
+
+                <!-- Year -->
+                <div class="form-row">
+                    <label>Year</label>
+                    <select name="year" required>
+                        <option value="">Select Year</option>
+                        <option>1st Year</option>
+                        <option>2nd Year</option>
+                        <option>3rd Year</option>
+                        <option>4th Year</option>
+                    </select>
+                </div>
+
+                <!-- Branch -->
+                <div class="form-row">
+                    <label>Branch</label>
+                    <select name="branch" required>
+                        <option value="">Select Branch</option>
+                        <option>CSE</option>
+                        <option>AI&ML</option>
+                        <option>AI&DS</option>
+                        <option>ECE</option>
+                    </select>
+                </div>
+               <!-- Working Days -->
+               <div class="form-row">
+                    <label>Working Days</label>
+                    <input type="number" name="working_days" min="1" max="31" required>
+                </div>
+                <!-- Section -->
+                <div class="form-row">
+                    <label>Section</label>
+                    <select name="section" required>
+                        <option value="">Select Section</option>
+                        <option>A</option>
+                        <option>B</option>
+                    </select>
+                </div>
+
+                <button type="submit">View Attendance</button>
+            </form>
+
+            <a href="/attendance" class="back-link">← Back</a>
+
+        </div>
+    </div>
+
+</body>
+</html>

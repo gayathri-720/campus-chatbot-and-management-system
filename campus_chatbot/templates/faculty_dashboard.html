@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Faculty Dashboard</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body class="dashboard-bg">
+
+<div class="header2">
+    <div class="content2">Welcome Faculty</div>
+    <a href="/logout" class="logout-btn">Logout</a>
+</div>
+
+<div class="content1">
+    <div class="card2">
+        <h2>Faculty Dashboard</h2>
+
+        <a href="/attendance" class="menu-link">📊 Student Attendance</a>
+        <a href="/study-material" class="menu-link">📚 Study Materials</a>
+        <a href="/fees" class="menu-link">💰 Fees</a>
+        <a href="/timetable" class="menu-link">🕒 Time Table</a> 
+        <a href="/create_quiz" class="menu-link"> 📝Create Quiz</a>
+        <a href="/select_internal_marks" class="menu-link">📖Internal Marks</a>
+
+    </div>
+</div>
+
+</body>
+</html>

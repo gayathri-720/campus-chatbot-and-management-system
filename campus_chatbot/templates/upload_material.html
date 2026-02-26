@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Upload Study Material</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body class="dashboard-bg">
+
+<div class="center-container">
+    <div class="white-card" style="width:650px">
+
+        <h2>{{ course }} - {{ year }} - {{ branch }}</h2>
+
+        <!-- ================= Upload Form ================= -->
+        <form method="POST" enctype="multipart/form-data">
+
+            <label>Material Title</label>
+            <input type="text" name="title" placeholder="Enter material title" required>
+
+            <label>Subject</label>
+            <input type="text" name="subject" placeholder="Enter subject name" required><br><br>
+
+            <label>Section</label>
+            <select name="section" required>
+                <option value="">Select Section</option>
+                <option value="A">A</option>
+                <option value="B">B</option>
+                <option value="C">C</option>
+            </select><br><br>
+
+            <label>Upload File</label>
+            <input type="file" name="file" required>
+
+            <button type="submit" style="margin-top:10px;">
+                Upload Material
+            </button>
+
+        </form>
+
+        <hr style="margin:25px 0">
+
+        <!-- ================= Uploaded Files ================= -->
+        <h3>Uploaded Materials</h3>
+
+        {% if files %}
+            <table border="1" width="100%" cellpadding="8" cellspacing="0">
+                <tr style="background:#f2f2f2;">
+                    <th>File Name</th>
+                    <th>Open</th>
+                </tr>
+
+                {% for file in files %}
+                <tr>
+                    <td>{{ file }}</td>
+                    <td>
+                        <a href="{{ url_for(
+                            'open_study_material',
+                            course=course,
+                            year=year,
+                            branch=branch,
+                            filename=file
+                        ) }}" target="_blank">
+                            View
+                        </a>
+                    </td>
+                </tr>
+                {% endfor %}
+
+            </table>
+        {% else %}
+            <p>No materials uploaded yet.</p>
+        {% endif %}
+
+        <br>
+        <a href="/study-material" class="back-link">⬅ Back</a>
+
+    </div>
+</div>
+
+</body>
+</html>

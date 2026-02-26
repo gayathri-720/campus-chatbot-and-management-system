@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Student Dashboard</title>
+
+    <!-- STYLE -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body class="bg">
+
+<header class="header1">
+    <h2>Welcome {{ session.name }}</h2>
+    <h3>Roll No: {{ roll }}</h3>
+    <a href="/logout" class="logout-btn">Logout</a>
+</header>
+
+<!-- HIDDEN ROLL NUMBER -->
+<input type="hidden" id="rollNo" value="{{ session.roll }}">
+
+<div class="content1">
+
+    <!-- STUDENT CARD -->
+    <div class="card1 student-card">
+        <h3>Student Details</h3>
+         
+        <a class="menu-link" onclick="sendMessage('attendance')">📊 Attendance</a>
+
+        <a class="menu-link" onclick="sendMessage('materials')">📚 Study Materials</a>
+
+        <a class="menu-link" onclick="sendMessage('fees')">💰 Fees</a>
+
+        <a class="menu-link" onclick="sendMessage('timetable')">🕘 Time table</a>
+
+        <a class="menu-link" onclick="sendMessage('quiz')">📝 Write Quiz</a>
+
+        <a class="menu-link" onclick="sendMessage('internal')">📊 Internal Marks</a>
+    </div>
+
+    <!-- CHATBOT -->
+    <div class="chatbotChatBot chatbot-right">
+
+        <div class="chat-header">🤖 College Bot</div>
+
+        <div class="chat-body" id="chatBody">
+            <p class="bot">Hi 👋 How can I help you?</p>
+        </div>
+
+        <input type="text" placeholder="Type here..." class="chat-input" disabled>
+    </div>
+
+</div>
+
+<script>
+function sendMessage(type) {
+
+    const chatBody = document.getElementById("chatBody");
+
+    chatBody.innerHTML += `<p class="user">You clicked ${type}</p>`;
+
+    // ========= ATTENDANCE =========
+    if (type === "attendance") {
+
+        fetch("/api/student-attendance")
+            .then(r => r.json())
+            .then(data => {
+
+                if (data.attendance.length === 0) {
+                    chatBody.innerHTML += `<p class="bot">No attendance found</p>`;
+                    return;
+                }
+
+                let msg = "<p class='bot'><b>Your Attendance:</b><br>";
+
+                data.attendance.forEach(a => {
+                    msg += `${a.date} (${a.time}) → ${a.status}<br>`;
+                });
+
+                msg += "</p>";
+                chatBody.innerHTML += msg;
+            });
+    }
+
+    // ========= MATERIALS =========
+    else if (type === "materials") {
+
+        fetch("/api/student-materials")
+            .then(r => r.json())
+            .then(data => {
+
+                if (data.materials.length === 0) {
+                    chatBody.innerHTML += `<p class="bot">No materials uploaded yet</p>`;
+                    return;
+                }
+
+                let msg = "<p class='bot'><b>Study Materials:</b><br>";
+
+                data.materials.forEach(m => {
+                    msg += `
+                        📘 ${m.title} (${m.subject})<br>
+                        📅 ${m.date}<br>
+                        <a href="/uploads/${m.filename}" target="_blank">Download</a><br><br>
+                    `;
+                });
+
+                msg += "</p>";
+
+                chatBody.innerHTML += msg;
+            });
+    }
+
+    // ========= FEES =========
+    // ========= FEES =========
+else if (type === "fees") {
+
+    fetch("/api/student-fees")
+        .then(r => r.json())
+        .then(data => {
+
+            if (!data.status) {
+                chatBody.innerHTML += `<p class="bot">Fees record not found</p>`;
+                return;
+            }
+
+            let color = data.status === "PAID" ? "green" : "red";
+
+            chatBody.innerHTML += `
+                <p class="bot">
+                    <b>Your Fees Status:</b><br>
+                    <span style="color:${color}; font-weight:bold;">
+                        ${data.status}
+                    </span>
+                </p>
+            `;
+        });
+}
+    // ========= TIMETABLE =========
+    // ========= TIMETABLE =========
+// ========= TIMETABLE =========
+else if (type === "timetable") {
+
+    fetch("/api/student-timetable")
+        .then(r => r.json())
+        .then(data => {
+
+            if (data.files.length === 0) {
+                chatBody.innerHTML += `<p class="bot">No timetable uploaded yet</p>`;
+                return;
+            }
+
+            let msg = "<p class='bot'><b>Your Timetable:</b><br>";
+
+            data.files.forEach(file => {
+                msg += `
+                    📄 ${file}<br>
+                    <a href="/timetable-file/${data.course}/${data.year}/${data.branch}/${file}" target="_blank">
+                        View
+                    </a><br><br>
+                `;
+            });
+
+            msg += "</p>";
+
+            chatBody.innerHTML += msg;
+        });
+}
+    // ========= QUIZ =========
+   // ========= QUIZ =========
+else if (type === "quiz") {
+
+    fetch("/api/student-quiz")
+        .then(response => response.json())
+        .then(data => {
+
+            if (!data.quiz || data.quiz.length === 0) {
+                chatBody.innerHTML += `<p class="bot">No quiz available</p>`;
+                return;
+            }
+
+            let msg = "<p class='bot'><b>Available Quizzes:</b><br>";
+
+            data.quiz.forEach(q => {
+                msg += `
+                    📝 ${q.title}<br>
+                    <a href="{{ url_for('student_quiz') }}">
+    <button>Start Quiz</button>
+</a>                `;
+            });
+
+            msg += "</p>";
+
+            chatBody.innerHTML += msg;
+        })
+        .catch(error => {
+            chatBody.innerHTML += `<p class="bot">Error loading quiz</p>`;
+            console.log(error);
+        });
+}
+    // ========= INTERNAL =========
+    else if (type === "internal") {
+
+    fetch("/api/student-internal")
+    .then(response => response.json())
+    .then(data => {
+
+        if (!data.marks || data.marks.length === 0) {
+            chatBody.innerHTML += `<p class="bot">No internal marks available.</p>`;
+            return;
+        }
+
+        data.marks.forEach(m => {
+            chatBody.innerHTML += `
+                <div class="bot" style="background:#f1f1f1; color:black; padding:10px; border-radius:8px; margin:5px 0;">
+                    <b>${m.mid}</b><br>
+                    BIT: ${m.bit} <br>
+                    Assignment: ${m.assignment} <br>
+                    Theory: ${m.theory} <br>
+                    <b>Total: ${m.total}</b>
+                </div>
+            `;
+        });
+
+        chatBody.scrollTop = chatBody.scrollHeight;
+    })
+    .catch(error => {
+        chatBody.innerHTML += `<p class="bot">Error loading internal marks.</p>`;
+        console.log(error);
+    });
+}
+}
+</script>
+
+</body>
+</html>

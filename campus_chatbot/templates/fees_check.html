@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Fees Status</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+<div class="fees-container">
+    <div class="fees-card">
+        <h2 class="fees-title">Student Fees Status</h2>
+
+        <table class="fees-table">
+            <tr>
+                <th>Roll</th>
+                <th>Course</th>
+                <th>Year</th>
+                <th>Branch</th>
+                <th>Status</th>
+                <th>Update</th>
+            </tr>
+
+            {% for s in students %}
+            <tr>
+                <form method="POST">
+                    <td>{{ s.roll }}</td>
+                    <td>{{ s.course }}</td>
+                    <td>{{ s.year }}</td>
+                    <td>{{ s.branch }}</td>
+                    <td>{{ s.fees_status }}</td>
+                    <td>
+                        <input type="hidden" name="roll" value="{{ s.roll }}">
+                        <select name="status">
+                            <option {% if s.fees_status=="PAID" %}selected{% endif %}>PAID</option>
+                            <option {% if s.fees_status=="NOT PAID" %}selected{% endif %}>NOT PAID</option>
+                        </select>
+                        <button type="submit">Save</button>
+                    </td>
+                </form>
+            </tr>
+            {% endfor %}
+        </table>
+
+        <a href="/fees" class="back-link">⬅ Back</a>
+    </div>
+</div>
+
+</body>
+</html>

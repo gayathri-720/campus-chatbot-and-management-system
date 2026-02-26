@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Select Class</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+<div class="center-container">
+    <div class="white-card">
+        <h2>Select Class Details</h2>
+
+        <form method="POST" action="/take-attendance">
+
+            <label>Course</label>
+            <select name="course" required>
+                <option value="">select course</option>
+                <option value="B.Tech">B.Tech</option>
+                <option value="M.Tech">M.Tech</option>
+                <option value="MBA">MBA</option>
+                 <option value="Diploma">Diploma</option>
+            </select><br><br>
+
+            <label>Year</label>
+            <select name="year" required>
+               <option>select year</option>
+                <option>1st Year</option>
+                <option>2nd Year</option>
+                <option>3rd Year</option>
+                <option>4th Year</option>
+            </select><br><br>
+
+            <label>Branch</label>
+            <select name="branch" required>
+                <option>select branch</option>
+                <option>CSE</option>
+                <option>AI&ML</option>
+                <option>AI&DS</option>
+                <option>ECE</option>
+                
+            </select><br><br>
+
+            <label>Section</label>
+            <select name="section" required>
+               <option>select section</option>
+                <option>A</option>
+                <option>B</option>
+            </select>
+
+            <button type="submit">Show Students</button>
+        </form>
+       <a class="outline-btn" href="/faculty_dashboard">⬅ Back </a>
+    </div>
+</div>
+
+</body>
+</html>

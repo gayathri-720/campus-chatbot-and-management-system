@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Internal Marks Summary</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+<div class="header">
+    <h1>Internal Marks Summary</h1>
+    <p>{{ course }} | {{ year }} | {{ branch }} | Section {{ section }} | {{ mid }}</p>
+</div>
+
+<div class="white-card">
+    <h3>Total Students: {{ count }}</h3>
+
+    <table>
+        <tr>
+            <th>Student ID</th>
+            <th>BIT</th>
+            <th>Assignment</th>
+            <th>Theory</th>
+            <th>Total</th>
+        </tr>
+
+        {% for row in data %}
+        <tr>
+            <td>{{ row[0] }}</td>
+            <td>{{ row[1] }}</td>
+            <td>{{ row[2] }}</td>
+            <td>{{ row[3] }}</td>
+            <td>{{ row[4] }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+
+    <button onclick="window.print()">🖨 Print</button>
+  <a href="{{ url_for('internal_marks_entry',
+                    course=course,
+                    year=year,
+                    branch=branch,
+                    section=section,
+                    mid=mid) }}"
+   class="outline-btn">
+   ← Back
+</a>
+</div>
+
+</body>
+</html>

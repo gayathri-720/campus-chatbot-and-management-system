@@ -1,0 +1,70 @@
+<body>
+
+<h2>📝 Available Quiz</h2>
+
+<form id="quizForm">
+    <div id="quiz-container">
+        Loading quiz...
+    </div>
+
+    <div style="text-align:center;">
+        <button type="submit">Submit Quiz</button>
+    </div>
+</form>
+
+<div id="thankMessage" style="display:none; text-align:center; margin-top:20px; color:lightgreen; font-size:18px;">
+    ✅ Thank you for submitting the quiz!
+</div>
+
+<script>
+fetch("/api/student-quiz")
+.then(response => response.json())
+.then(data => {
+
+    let container = document.getElementById("quiz-container");
+
+    if (data.quiz.length === 0) {
+        container.innerHTML = "<p>No quiz available for your class.</p>";
+        document.querySelector("button").style.display = "none";
+        return;
+    }
+
+    container.innerHTML = "";
+
+    data.quiz.forEach((q, index) => {
+        container.innerHTML += `
+            <div class="quiz-box">
+                <div class="question">
+                    Q${index + 1}. ${q.question}
+                </div>
+
+                <label><input type="radio" name="q${q.id}" value="${q.option1}"> ${q.option1}</label><br>
+                <label><input type="radio" name="q${q.id}" value="${q.option2}"> ${q.option2}</label><br>
+                <label><input type="radio" name="q${q.id}" value="${q.option3}"> ${q.option3}</label><br>
+                <label><input type="radio" name="q${q.id}" value="${q.option4}"> ${q.option4}</label><br>
+            </div>
+        `;
+    });
+
+});
+
+// Handle Submit
+document.getElementById("quizForm").addEventListener("submit", function(e) {
+    e.preventDefault();
+
+    let radios = document.querySelectorAll("input[type='radio']:checked");
+
+    if (radios.length === 0) {
+        alert("Please answer at least one question before submitting.");
+        return;
+    }
+
+    // Hide quiz
+    document.getElementById("quizForm").style.display = "none";
+
+    // Show thank you message
+    document.getElementById("thankMessage").style.display = "block";
+});
+</script>
+
+</body>

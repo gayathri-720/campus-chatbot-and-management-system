@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Quiz Questions</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+
+    <style>
+        .quiz-box {
+            background: white;
+            padding: 20px;
+            margin: 15px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px #ccc;
+        }
+
+        .print-all {
+            background: #1e3a8a;
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 8px;
+            cursor: pointer;
+            margin-bottom: 20px;
+            font-size: 16px;
+        }
+
+        /* Hide button while printing */
+        @media print {
+            .print-all {
+                display: none;
+            }
+        }
+    </style>
+</head>
+
+<body class="dashboard-bg">
+
+<div class="center-card">
+
+    <h2>Uploaded Quiz Questions</h2>
+    <p>
+    Course: {{ course }} |
+    Year: {{ year }} |
+    Branch: {{ branch }} |
+   Section: {{ section }}
+   </p>
+
+
+    <!-- ⭐ QUESTIONS LOOP -->
+    {% for q in quizzes %}
+        <div class="quiz-box">
+
+            <h3>Q{{ loop.index }}. {{ q.question }}</h3>
+
+            <p>A. {{ q.option1 }}</p>
+            <p>B. {{ q.option2 }}</p>
+            <p>C. {{ q.option3 }}</p>
+            <p>D. {{ q.option4 }}</p>
+
+            <p><b>Correct Answer:</b> Option {{ q.correct_option }}</p>
+
+        </div>
+    {% endfor %}
+     <!-- ⭐ SINGLE PRINT BUTTON -->
+    <button class="print-all" onclick="window.print()">
+        Print All Questions
+    </button>
+<a href="{{ url_for('upload_quiz',
+                    course=course,
+                    year=year,
+                    branch=branch,
+                    section=section) }}"
+   class="outline-btn">
+   ← Back
+</a>
+</div>
+
+</body>
+</html>

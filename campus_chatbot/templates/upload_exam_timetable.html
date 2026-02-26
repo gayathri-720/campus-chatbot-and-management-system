@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Upload Exam Timetable</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body class="dashboard-bg">
+
+<div class="center-container">
+    <div class="white-card">
+
+        <h2>Upload Exam Timetable</h2>
+
+        <p><b>Course:</b> {{ course }}</p>
+        <p><b>Year:</b> {{ year }}</p>
+        <p><b>Branch:</b> {{ branch }}</p>
+
+        <form method="POST" enctype="multipart/form-data">
+
+            <div class="form-row">
+                <label>File:</label>
+                <input type="file" name="file" required>
+            </div>
+
+            <button type="submit">Upload</button>
+
+        </form>
+
+        <hr style="margin:20px 0;">
+
+        <h3 style="text-align:center;">Uploaded Files</h3>
+
+        <table>
+            <tr>
+                <th>File Name</th>
+                <th>Open</th>
+            </tr>
+
+            {% for file in files %}
+            <tr>
+                <td>{{ file }}</td>
+                <td>
+                    <a href="/exam-timetable-file/{{ course }}/{{ year }}/{{ branch }}/{{ file }}" target="_blank">
+                        View
+                    </a>
+                </td>
+            </tr>
+            {% endfor %}
+        </table>
+
+        <a href="/exam-timetable" class="back-link">⬅ Back</a>
+
+    </div>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>College Login</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body class="dashboard-bg">
+
+<!-- HEADER -->
+<header class="header">
+    <img src="{{ url_for('static', filename='logo.png') }}" class="logo">
+    <div class="header-text">
+        <h1>K.L.M. COLLEGE OF ENGINEERING FOR WOMEN</h1>
+        <p>(Approved by AICTE | Affiliated to JNTUA)</p>
+    </div>
+</header>
+
+<!-- LOGIN SECTION -->
+<div class="login-container">
+    <form class="login-box" method="POST" action="/">
+        <h2 class="login-title">Login</h2>
+
+        <input type="email" name="email" placeholder="Email" required>
+        <input type="password" name="password" placeholder="Password" required>
+
+        <select name="role" required>
+            <option value="">Select Role</option>
+            <option value="Student">Student</option>
+            <option value="Faculty">Faculty</option>
+        </select>
+
+        <button type="submit">Login</button>
+
+        <!-- NEW USER LINK -->
+        <p style="text-align:center; margin-top:15px;">
+            New User? 
+            <a href="/register" style="color:#0b22ff; font-weight:bold; text-decoration:none;">
+                Register Here
+            </a>
+        </p>
+
+    </form>
+</div>
+
+</body>
+</html>

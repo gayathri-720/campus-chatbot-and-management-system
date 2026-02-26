@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Monthly Result</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+<div class="center-container">
+
+    <div class="white-card large-card">
+
+        <h2>Monthly Attendance Result</h2>
+
+        <p><b>Month:</b> {{ month }}</p>
+        <p><b>Working Days:</b> {{ working_days }}</p>
+        <p><b>Course:</b> {{ course }}</p>
+        <p><b>Year:</b> {{ year }}</p>
+        <p><b>Branch:</b> {{ branch }}</p>
+        <p><b>Section:</b> {{ section }}</p>
+
+        <hr>
+
+        <h3 style="text-align:center;">Attendance Summary</h3>
+
+        <table class="attendance-table">
+            <tr>
+                <th>Roll No</th>
+                <th>Working Days</th>
+                <th>Present Days</th>
+                <th>Absent Days</th>
+            </tr>
+
+            {% for row in data %}
+            <tr>
+                <td>{{ row.roll }}</td>
+                <td>{{ working_days }}</td>
+                <td>{{ row.present_days }}</td>
+                <td>{{ row.absent_days }}</td>
+            </tr>
+            {% endfor %}
+        </table>
+
+        <a href="/monthly-attendance" class="back-link">← Back</a>
+
+    </div>
+
+</div>
+
+</body>
+</html>

@@ -1,0 +1,788 @@
+/* ================= RESET ================= */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+/* ================= BACKGROUND ================= */
+body,
+.dashboard-bg {
+    min-height: 100vh;
+    background: url("../static/college_bg.jfif") no-repeat center center fixed;
+    background-size: cover;
+}
+
+/* ================= COMMON HEADER ================= */
+.header,
+.header1,
+.header2 {
+    height: 80px;
+    background: #0b22ff;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+
+/* LOGO */
+.logo {
+    position: absolute;
+    left: 20px;
+    height: 70px;
+}
+
+/* HEADER TEXT */
+.header-text h1 {
+    font-size: 26px;
+}
+
+.header-text p {
+    font-size: 14px;
+}
+
+/* LOGOUT BUTTON */
+.logout-btn {
+    position: absolute;
+    right: 20px;
+    background: red;
+    color: white;
+    padding: 6px 15px;
+    border-radius: 5px;
+    text-decoration: none;
+    font-size: 14px;
+}
+
+.logout-btn:hover {
+    background: darkred;
+}
+
+/* ================= LOGIN PAGE ================= */
+.login-container {
+    height: calc(100vh - 80px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.login-box {
+    background: white;
+    padding: 30px;
+    width: 350px;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+}
+
+.login-title {
+    text-align: center;
+    color: red;
+    margin-bottom: 20px;
+}
+
+.login-box input,
+.login-box select {
+    width: 100%;
+    height: 42px;
+    margin-bottom: 15px;
+    padding: 10px;
+    border: 1px solid #999;
+    border-radius: 5px;
+}
+
+.login-box button {
+    width: 100%;
+    height: 45px;
+    background: red;
+    color: white;
+    font-size: 16px;
+    font-weight: bold;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.login-box button:hover {
+    background: darkred;
+}
+
+/* ================= DASHBOARD CONTENT ================= */
+.content1,
+.content2 {
+    display: flex;
+    justify-content: space-between;
+    padding: 40px;
+}
+
+/* ================= DASHBOARD CARDS ================= */
+.card1,
+.card2 {
+    background: white;
+    width: 360px;
+    padding: 25px;
+    border-radius: 10px;
+    box-shadow: 0 6px 18px rgba(0,0,0,0.4);
+}
+
+.card1 h3,
+.card2 h3 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.card1 p,
+.card2 p {
+    background: #f3f3f3;
+    padding: 10px;
+    border-radius: 5px;
+    margin-bottom: 10px;
+}
+
+/* ================= MENU LINKS ================= */
+.menu-link {
+    display: block;
+    margin: 10px 0;
+    padding: 10px;
+    background: #f4f6f9;
+    text-decoration: none;
+    border-radius: 6px;
+    color: black;
+    font-weight: bold;
+}
+
+.menu-link:hover {
+    background: #0b22ff;
+    color: white;
+}
+
+/* ================= CENTER CONTAINER ================= */
+.center-container {
+    min-height: calc(100vh - 80px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* ================= WHITE CARD ================= */
+.white-card {
+    background: white;
+    width: 450px;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.35);
+}
+
+.white-card h2 {
+    text-align: center;
+    margin-bottom: 25px;
+    color: #0b22ff;
+}
+
+/* ================= FORM ROW (LABEL + INPUT SAME LINE) ================= */
+.form-row {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.form-row label {
+    width: 120px;
+    font-weight: bold;
+    color: #000;
+}
+
+.form-row input,
+.form-row select {
+    flex: 1;
+    padding: 8px;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+}
+
+/* Submit button */
+.white-card button {
+    margin-top: 20px;
+    width: 100%;
+    padding: 10px;
+    background: #0b22ff;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.white-card button:hover {
+    background: #081bb5;
+}
+
+/* Back link */
+.back-link {
+    display: block;
+    text-align: center;
+    margin-top: 15px;
+    font-weight: bold;
+    text-decoration: none;
+    color: black;
+}
+
+/* ================= ATTENDANCE PAGE ================= */
+.attendance-container {
+    padding-top: 110px;
+    display: flex;
+    justify-content: center;
+    min-height: calc(100vh - 80px);
+}
+
+.attendance-card {
+    background: white;
+    width: 900px;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+}
+
+.attendance-title {
+    text-align: center;
+    font-size: 22px;
+    font-weight: bold;
+    margin-bottom: 15px;
+    color: #0b22ff;
+}
+
+/* Attendance table */
+.attendance-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.attendance-table th,
+.attendance-table td {
+    border: 1px solid #999;
+    padding: 10px;
+    text-align: center;
+}
+
+.attendance-table th {
+    background: #0b22ff;
+    color: white;
+}
+
+.attendance-table tr:nth-child(even) {
+    background: #f4f6f9;
+}
+
+/* ================= GENERAL TABLE (FEES) ================= */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 15px;
+}
+
+th, td {
+    border: 1px solid #ccc;
+    padding: 8px;
+    text-align: center;
+}
+
+th {
+    background: #f0f0f0;
+}
+
+/* ================= FEES STATUS PAGE ================= */
+
+.fees-container {
+    min-height: calc(100vh - 80px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 40px;
+}
+
+.fees-card {
+    background: white;
+    width: 95%;
+    max-width: 1100px;
+    padding: 25px;
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.35);
+}
+
+.fees-title {
+    text-align: center;
+    color: #0b22ff;
+    margin-bottom: 20px;
+}
+
+/* Fees table */
+.fees-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.fees-table th,
+.fees-table td {
+    border: 1px solid #ccc;
+    padding: 10px;
+    text-align: center;
+}
+
+.fees-table th {
+    background: #0b22ff;
+    color: white;
+}
+
+.fees-table tr:nth-child(even) {
+    background: #f4f6f9;
+}
+
+.fees-table select,
+.fees-table button {
+    padding: 5px 8px;
+}
+/* ===== MAIN LAYOUT ===== */
+.content1 {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding: 40px 60px;
+}
+
+/* ===== STUDENT CARD ===== */
+.student-card {
+    margin-top: 80px;   /* moves card DOWN */
+    width: 260px;
+}
+
+
+
+/* ===== CHATBOT RIGHT ===== */
+.chatbot-right {
+    margin-top: 40px;
+    width: 320px;
+}
+
+/* ===== CHATBOT WHITE BACKGROUND ===== */
+.chatbotChatBot {
+    background-color: white;
+    border-radius: 12px;
+    box-shadow: 0 0 12px rgba(0,0,0,0.15);
+    overflow: hidden;
+}
+
+/* CHAT HEADER */
+.chat-header {
+    background-color: #0033ff;
+    color: white;
+    padding: 10px;
+    font-weight: bold;
+    text-align: center;
+}
+
+/* CHAT BODY */
+.chat-body {
+    background-color: white;
+    height: 260px;
+    padding: 10px;
+    overflow-y: auto;
+}
+
+/* CHAT MESSAGES */
+.bot {
+    background: #f1f1f1;
+    padding: 8px 10px;
+    border-radius: 8px;
+    margin: 6px 0;
+    width: fit-content;
+}
+
+.user {
+    background: #dbe7ff;
+    padding: 8px 10px;
+    border-radius: 8px;
+    margin: 6px 0;
+    margin-left: auto;
+    width: fit-content;
+}
+
+/* INPUT */
+.chat-input {
+    width: 100%;
+    border: none;
+    padding: 10px;
+    border-top: 1px solid #ccc;
+}/* ===== ATTENDANCE FORM INSIDE TABLE ===== */
+.attendance-table select {
+    padding: 6px;
+    border-radius: 5px;
+    border: 1px solid #aaa;
+}
+
+.attendance-table button {
+    padding: 6px 12px;
+    background: #0b22ff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.attendance-table button:hover {
+    background: #081bb5;
+}
+
+/* ================= QUIZ PAGE ================= */
+
+.quiz-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+/* White card in center */
+.quiz-card {
+    background: white;
+    padding: 30px;
+    width: 600px;
+    border-radius: 12px;
+    box-shadow: 0 0 15px rgba(0,0,0,0.2);
+}
+
+.quiz-title {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.question-box {
+    margin-bottom: 20px;
+}
+
+.question-box input,
+.question-box select {
+    width: 100%;
+    padding: 8px;
+    margin-top: 8px;
+    margin-bottom: 8px;
+}
+
+/* Buttons */
+
+.add-btn {
+    width: 100%;
+    background: #3498db;
+    color: white;
+    padding: 10px;
+    border: none;
+    border-radius: 6px;
+    margin-top: 10px;
+    cursor: pointer;
+}
+
+.add-btn:hover {
+    background: #2980b9;
+}
+
+.submit-btn {
+    width: 100%;
+    background: #2ecc71;
+    color: white;
+    padding: 12px;
+    border: none;
+    border-radius: 6px;
+    margin-top: 15px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.submit-btn:hover {
+    background: #27ae60;
+}
+.center-card {
+    width: 500px;
+    margin: 80px auto;
+    background: white;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 0 15px rgba(0,0,0,0.2);
+    text-align: left;
+}
+
+.center-card h2 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.center-card textarea,
+.center-card input {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+}
+
+.center-card button {
+    width: 100%;
+    padding: 12px;
+    background: #1f3c88;
+    color: white;
+    border: none;
+    border-radius: 6px;
+}
+.marks-container {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.marks-card {
+    background: white;
+    width: 95%;
+    max-width: 1000px;
+    padding: 25px;
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.35);
+}
+
+.marks-title {
+    text-align: center;
+    color: #0b22ff;
+    margin-bottom: 20px;
+}
+
+select {
+    width: 220px;          /* medium width */
+    padding: 6px 8px;      /* medium height */
+    font-size: 14px;
+    border-radius: 6px;
+    border: 1px solid #aaa;
+}
+.marks-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.marks-table th,
+.marks-table td {
+    border: 1px solid #aaa;
+    padding: 10px;
+    text-align: center;
+}
+
+.marks-table th {
+    background: #0b22ff;
+    color: white;
+}
+
+.marks-table input {
+    width: 80px;
+    padding: 6px;
+}
+
+.marks-table input[readonly] {
+    background: #eaf0ff;
+    font-weight: bold;
+}
+
+.save-marks-btn {
+    width: 100%;
+    margin-top: 20px;
+    padding: 12px;
+    background: #0b22ff;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.large-card {
+    width: 90%;
+    max-width: 1100px;
+}
+
+.marks-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+.marks-table th {
+    background: #1536ff;
+    color: white;
+    padding: 10px;
+}
+
+.marks-table td {
+    padding: 8px;
+}
+
+.marks-table input {
+    width: 100%;
+    padding: 6px;
+    text-align: center;
+}
+
+.btn-row {
+    margin-top: 20px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.primary-btn {
+    background: #1536ff;
+    color: white;
+    padding: 10px 25px;
+    border: none;
+    border-radius: 5px;
+}
+.header {
+    background: #1536ff;
+    color: white;
+    padding: 20px 10px;
+    text-align: center;
+}
+
+.header h1 {
+    margin: 0;
+    font-size: 32px;
+    font-weight: bold;
+}
+
+.sub-header {
+    margin-top: 6px;
+    font-size: 15px;
+    opacity: 0.9;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+th, td {
+    border: 1px solid #ddd;
+    padding: 10px;
+    text-align: center;
+}
+
+th {
+    background: #1536ff;
+    color: white;
+}
+
+button {
+    margin-top: 20px;
+    padding: 10px 25px;
+    background: #1536ff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+.box-link {
+    display: block;
+    width: 100%;
+    padding: 15px;
+    margin: 12px 0;
+    background-color:green;
+    color: white;
+    text-decoration: none;
+    font-size: 18px;
+    font-weight: bold;
+    text-align: center;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    transition: 0.3s;
+}
+
+.box-link:hover {
+    background-color:green;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(0,0,0,0.3);
+}
+/* ===== TRANSPARENT BOX LINKS ===== */
+.white-card a {
+    display: block;
+    width: 100%;
+    padding:8px;
+    margin: 6px 0;
+    background: transparent;     /* No background */
+    color: #0b22ff;              /* Text color */
+    text-decoration: none;
+    font-size: 18px;
+    font-weight: bold;
+    text-align: center;
+    border: 2px solid #0b22ff;   /* Box border */
+    border-radius: 10px;
+    transition: 0.3s;
+}
+
+/* Hover effect */
+.white-card a:hover {
+    background: #0b22ff;   /* Fill on hover */
+    color: white;
+    transform: translateY(-2px);
+}
+
+/* ===== OUTLINE BACK BUTTON ===== */
+.outline-btn {
+    display: block;
+    width: 100%;
+    padding: 12px;
+    margin-top: 12px;
+
+    background: transparent;
+    color: #1a33d6;
+
+    border: 2px solid #1a33d6;
+    border-radius: 10px;
+
+    text-decoration: none;
+    font-weight: bold;
+    text-align: center;
+
+    transition: 0.3s;
+}
+
+.outline-btn:hover {
+    background: #1a33d6;
+    color: white;
+}
+
+/* ===== QUIZ INPUT FIELDS SAME SIZE ===== */
+
+.question-box textarea,
+.question-box input,
+.question-box select {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 10px;
+    margin-top: 8px;
+    margin-bottom: 10px;
+
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 14px;
+}
+
+/* Textarea height */
+.question-box textarea {
+    height: 70px;
+    resize: vertical;
+}
+
+.welcome-box h2 {
+    margin: 0;
+}
+
+.roll-text {
+    margin-top: 20px;   /* GAP BETWEEN NAME & ROLL */
+    font-size: 16px;
+    font-weight: 500;
+    opacity: 0.95;
+    letter-spacing: 0.5px;
+}
+
